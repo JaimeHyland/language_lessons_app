@@ -1,0 +1,29 @@
+digraph ERD {
+    graph [rankdir=LR, fontsize=10, fontname="Helvetica"];
+    node [shape=record, fontname="Helvetica"];
+    edge [fontname="Helvetica"];
+
+    Language [label="{Language|+ id: PK\l+ iso_code: string\l}"];
+    LangName [label="{LangName|+ id: PK\l+ name_text: string\l+ lang_iso: FK(Language)\l+ text_iso: FK(Language)\l}"];
+    Level [label="{Level|+ id: PK\l+ code: string (A1–C2)\l}"];
+    Topic [label="{Topic|+ id: PK\l+ language: FK(Language)\l}"];
+    TopicName [label="{TopicName|+ id: PK\l+ name_text: string\l+ topic: FK(Topic)\l+ text_iso: FK(Language)\l}"];
+    Lesson [label="{Lesson|+ id: PK\l+ topic: FK(Topic)\l+ level: FK(Level)\l+ language: FK(Language)\l+ title: richtext\l+ intro: richtext\l}"];
+    LessonText [label="{LessonText|+ id: PK\l+ lesson: FK(Lesson)\l+ order: int\l+ title: richtext (nullable)\l+ content: richtext/json\l}"];
+    Exercise [label="{Exercise|+ id: PK\l+ text: string\l}"];
+    ExerciseOption [label="{ExerciseOption|+ id: PK\l+ exercise: FK(Exercise)\l+ option_text: string\l+ is_correct: bool\l}"];
+    ExerciseLevel [label="{ExerciseLevel|+ exercise: FK(Exercise)\l+ level: FK(Level)\l}"];
+    ExerciseTopic [label="{ExerciseTopic|+ exercise: FK(Exercise)\l+ topic: FK(Topic)\l}"];
+
+    Language -> LangName [label="1 to many"];
+    Language -> Topic [label="1 to many"];
+    Topic -> TopicName [label="1 to many"];
+    Topic -> Lesson [label="1 to many"];
+    Level -> Lesson [label="1 to many"];
+    Lesson -> LessonText [label="1 to many"];
+    Exercise -> ExerciseOption [label="1 to many"];
+    Level -> ExerciseLevel [label="1 to many"];
+    Exercise -> ExerciseLevel [label="many to many"];
+    Topic -> ExerciseTopic [label="1 to many"];
+    Exercise -> ExerciseTopic [label="many to many"];
+}
