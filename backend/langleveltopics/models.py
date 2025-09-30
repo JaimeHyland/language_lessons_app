@@ -23,7 +23,7 @@ class LangName(models.Model):
 
 
 class Level(models.Model):
-    code = models.CharField(max_length=2, unique=True)  # A1, A2, ...
+    code = models.CharField(max_length=2, unique=True)
     order = models.PositiveSmallIntegerField(help_text="Ordering for levels (1..6)")
 
     class Meta:
