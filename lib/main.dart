@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'screens/welcome_screen.dart';
 import 'screens/topics_page.dart';
 import 'services/api_service.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:language_lessons_app/l10n/app_localizations.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -17,6 +20,19 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Language Lessons',
       theme: ThemeData(primarySwatch: Colors.blue),
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en'),
+        Locale('de'),
+        Locale('es'),
+        Locale('fr'),
+        Locale('ga'),
+        Locale('eu'),
+      ],
       home: Builder(
         builder: (context) {
           WidgetsBinding.instance.addPostFrameCallback((_) {

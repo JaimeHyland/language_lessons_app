@@ -1,0 +1,7 @@
+{
+  "@@locale": "en",
+  "text_welcome": "Welcome!",
+  "dropdown_select_language": "Select language",
+  "dropdown_select_level": "Select level",
+  "button_continue": "Continue"
+}
